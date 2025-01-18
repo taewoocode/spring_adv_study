@@ -5,6 +5,9 @@ import hello.advanced.trace.TraceStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+/**
+ * 실행시간, 트랜잭션 ID 관리
+ */
 @Slf4j
 @Component
 public class HelloTraceV1 {
