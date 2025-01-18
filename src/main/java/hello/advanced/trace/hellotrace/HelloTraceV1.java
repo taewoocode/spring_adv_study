@@ -70,6 +70,10 @@ public class HelloTraceV1 {
      * @param prefix 접두어 (START, COMPLETE, EXCEPTION 중 하나)
      * @param level 계층 수준 (트랜잭션 중첩 레벨)
      * @return 계층 구조에 맞춘 접두어 문자열
+     * level=0
+     * level=1 |-->
+     * level=2     |-->
+     * level=3         |-->
      */
     private static String addSpace(String prefix, int level) {
         StringBuilder sb = new StringBuilder();
