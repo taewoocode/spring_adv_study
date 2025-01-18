@@ -22,9 +22,7 @@ public class HelloTraceV1 {
     public TraceStatus begin(String message) {
         TraceId traceId = new TraceId();
         Long startTimeMs = System.currentTimeMillis();
-
-        log.info("[{}] {}{}", traceId.getId(), addSpace(START_PREFIX,
-                traceId.getLevel()), message);
+        log.info("[{}] {}{}", traceId.getId(), addSpace(START_PREFIX, traceId.getLevel()), message);
         return new TraceStatus(traceId, startTimeMs, message);
     }
 
@@ -47,6 +45,7 @@ public class HelloTraceV1 {
 
     /**
      * 트랜잭션 완료 또는 예외 상황을 로그로 출력
+     * log Mapping은 {}, argument 1 : 1
      * @param status 트랜잭션 상태 정보
      * @param e 발생한 예외 객체 (null이면 정상 종료로 간주)
      */
@@ -73,7 +72,6 @@ public class HelloTraceV1 {
      * level=0
      * level=1 |-->
      * level=2     |-->
-     * level=3         |-->
      */
     private static String addSpace(String prefix, int level) {
         StringBuilder sb = new StringBuilder();
@@ -82,5 +80,4 @@ public class HelloTraceV1 {
         }
         return sb.toString();
     }
-
 }
