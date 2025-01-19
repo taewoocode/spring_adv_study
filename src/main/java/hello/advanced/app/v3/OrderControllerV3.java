@@ -20,7 +20,7 @@ public class OrderControllerV3 {
     private final OrderServiceV3 orderService ;
 
     @GetMapping("/v3/request")
-    public String request(TraceId beforeTraceId, String itemId) {
+    public String request(String itemId) {
 
         /** status scope 변경 **/
         TraceStatus status = null;

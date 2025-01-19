@@ -18,7 +18,7 @@ public class OrderServiceV3 {
     public void orderItem2(String itemId) {
         TraceStatus status = trace.begin("OrderService.orderItem");
         trace.exception(status, new IllegalStateException());
-        orderRepository.save(status.getTraceId(), itemId);
+        orderRepository.save(itemId);
         trace.end(status);
     }
 
@@ -29,7 +29,7 @@ public class OrderServiceV3 {
         /** 예외가 터져도 실행이 되야함 **/
         try {
             status = trace.begin("OrderService.orderItem()");
-            orderRepository.save(status.getTraceId(), itemId);
+            orderRepository.save(itemId);
             trace.end(status);
         }  catch (Exception e) {
             trace.exception(status, e);
