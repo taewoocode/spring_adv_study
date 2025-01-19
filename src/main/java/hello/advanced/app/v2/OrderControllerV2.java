@@ -1,5 +1,6 @@
 package hello.advanced.app.v2;
 
+import hello.advanced.trace.TraceId;
 import hello.advanced.trace.TraceStatus;
 import hello.advanced.trace.hellotrace.HelloTraceV1;
 import hello.advanced.trace.hellotrace.HelloTraceV2;
@@ -19,15 +20,15 @@ public class OrderControllerV2 {
     /** 의존 관계 주입 **/
     private final HelloTraceV2 trace;
 
-    @GetMapping("/v1/request")
-    public String request(String itemId) {
+    @GetMapping("/v2/request")
+    public String request(TraceId beforeTraceId, String itemId) {
 
-         /** status scope 변경 **/
+        /** status scope 변경 **/
         TraceStatus status = null;
 
         /** 예외가 터져도 실행이 되야함 **/
         try {
-            status = trace.begin("OrderController.request()");
+            status = trace.beginSync(beforeTraceId, "OrderController.request()");
             orderService.orderItem(status.getTraceId(), itemId);
             trace.end(status);
             return "ok";
