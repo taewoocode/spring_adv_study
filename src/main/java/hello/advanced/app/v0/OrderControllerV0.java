@@ -13,9 +13,9 @@ public class OrderControllerV0 {
 
     private final OrderServiceV0 orderService;
 
-    @GetMapping("/v0/request")
-    public String request(String itemId) {
-        orderService.orderItem(itemId);
-        return "ok";
-    }
+//    @GetMapping("/v0/request")
+//    public String request(String itemId) {
+//        orderService.orderItem(itemId);
+//        return "ok";
+//    }
 }
