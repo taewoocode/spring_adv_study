@@ -28,7 +28,7 @@ public class OrderControllerV2 {
         /** 예외가 터져도 실행이 되야함 **/
         try {
             status = trace.begin("OrderController.request()");
-            orderService.orderItem(itemId);
+            orderService.orderItem(status.getTraceId(), itemId);
             trace.end(status);
             return "ok";
         } catch (Exception e) {
