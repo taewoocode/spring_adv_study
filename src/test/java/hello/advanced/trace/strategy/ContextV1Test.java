@@ -58,8 +58,7 @@ public class ContextV1Test {
             }
         };
         log.info("strategy={}", strategy.getClass());
-        ContextV1 contextV1 = new ContextV1(strategy);
-        contextV1.execute();
+        new ContextV1(strategy).execute();
 
         Strategy strategy2 = new Strategy(){
 
@@ -69,7 +68,23 @@ public class ContextV1Test {
             }
         };
         log.info("strategy2={}", strategy2);
-        ContextV1 context2 = new ContextV1(strategy2);
+        new ContextV1(strategy2).execute();
+    }
+
+    /**
+     * 람다
+     */
+    @Test
+    void strategyV4() {
+
+        ContextV1 context1 = new ContextV1(() -> log.info("비즈니스 로직1 실행"));
+        context1.execute();
+        log.info("context1={}", context1);
+
+        ContextV1 context2 = new ContextV1(() -> log.info("비즈니스 로직2 실행"));
         context2.execute();
+        log.info("context2={}", context2);
+
+
     }
 }
